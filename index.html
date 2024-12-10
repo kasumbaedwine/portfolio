@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- link for font awesome to be inserted here -->
+    <script src="https://kit.fontawesome.com/d7a73e8193.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div id="header">
+        <div class="container">
+            <nav>
+                <!-- company logo -->
+                <h1><span class="logo">Kasumba&ensp;</span>Edwine</h1>
+                <!-- <img src="" class="logo" alt="KSB"> -->
+
+                <!-- list of menu -->
+                <ul id="sidemenu">
+                    <li><a href="#header">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <i class="fas fa-times" onclick="closemenu()"></i>
+
+                </ul>
+                <!-- menu icon to be added -->
+                 <i class="fas fa-bars" onclick="openmenu()"></i>
+            </nav>
+            <div class="header-text">
+                <p>IT Specialist | Mobile App Developer <br> Web App Developer</p>
+                <h1>Hi, I'm <span>Kasumba Edwine</span> <br> From Uganda </h1>
+            </div>
+        </div>
+    </div>
+    <!-- end of the home div -->
+
+
+     <!-- start of about page -->
+    <div id="about">
+        <div class="container">
+            <div class="row">
+                <div class="about-col-1">
+                    <img src="images/grad.png">
+                </div>
+                <div class="about-col-2">
+                    <h1 class="sub-title">About Me</h1>
+                    <p class="justify">
+
+                        Motivated and dedicated IT Graduate seeking opportunities to apply academic knowledge and technical skills in 
+a dynamic and challenging IT environment. Eager to contribute to projects, learn new technologies, and grow 
+professionally.  Graduated with a Second Class Upper Honors Bachelors Degree in Information Technology at Mbarara University of Science 
+and Technology on 19th October 2024, where I gained hands-on experience in Key IT Areas such as networking, 
+Geographical information systems, data Communication. Adept at programming, innovation and presentation, and 
+Networking, with a strong foundation in java, python, flutter.
+                        </p>
+
+                        <div class="tab-tittles">
+                            <p class="tab-links active-link" onclick="opentab('skills')">Skills</p>
+                            <p class="tab-links" onclick="opentab('exprience')">Exprience</p>
+                            <p class="tab-links" onclick="opentab('education')">Education</p>
+                        </div>
+                        <div class="tab-contents active-tab" id="skills">
+                            <ul>
+                                <li><span>Mobile Developing</span><br>Building Andriod/iOS apps</li>
+                                <li><span>Web Development</span><br>Web app Development</li>
+                                <li><span>Database Designing</span><br>Mysql</li>
+                                <li><span>Team Collaboration</span><br>Working with Others</li>
+                                <li><span>Communication</span><br>Presentation</li>
+                                
+
+                                
+                            </ul>
+                        </div>
+
+                        <!-- Expreince -->
+                        <div class="tab-contents" id="exprience">
+                            <ul>
+                                <li><span>Internship <br> 1 Month </span><br>Codinex Computers LTD</li>
+                                <li><span>Technical Director<br>2022 - 2024</span><br>Mbarara University Computing Student Association</li>
+                                <!-- <li><span>Web Development</span><br>Web app Development</li> -->
+                                <!-- <li><span>Mobile Developer</span><br>Designing Mobile interfaces</li> -->
+                            </ul>
+                        </div>
+                        <!-- Education -->
+                        <div class="tab-contents" id="education">
+                            <ul>
+                                <li><span>2021 - 2024</span><br>Mbarara University of Science and Technology</li>
+                                <li><span>2019 - 2020</span><br>Lugazi Progressive Secondary School</li>
+                                <li><span>2015 - 2018</span><br>St Mary's College Lugazi</li>
+                                <li><span>2007 - 2014</span><br>Kennedy Primary School - Entebbe</li>
+                            </ul>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Services page -->
+     <div id="services">
+        <div class="container">
+            <h1 class="sub-title">My Services</h1>
+            <div class="service-list">
+                <div>
+                    <!-- space for icons -->
+                     <i class="fas fa-code"></i>
+
+                    <h2>Web Design</h2>
+                    <!-- description  for web -->
+                     <p>As a web developer, I design, build and maintain websites and web applications. I collaborate with teams to deliver optimized and user-friendly websites</p>
+                    
+                        <a href="#">Learn more</a>
+                        
+                </div>
+                <!-- 2nd description -->
+
+                <div>
+                    <!-- space for icons -->
+                    <i class="fa-brands fa-google-play"></i>
+                     
+                    <h2>Mobile App Development</h2>
+                    <p>As a mobile Application Developer, I design, build and maintain mobile applications</p>
+                    
+                        <a href="#">Learn more</a>
+                        
+                </div>
+
+                <!-- 3rd description -->
+
+                <div>
+                    <!-- space for icons -->
+                    <i class="fa-solid fa-network-wired"></i>
+                     
+                    <h2> Network Support</h2>
+                    <!-- description -->
+                    <p>As a Network Support Specialist, I manage, troubleshoot and maintain network systems to ensure seamless connectivity and performance</p>
+                        <a href="#">Learn more</a>
+                        
+                </div>
+
+                <div>
+                    <!-- space for icons -->
+                    <i class="fa-solid fa-computer"></i>
+                     
+                    <h2>Computer service & Maintence</h2>
+                    <!-- description -->
+                     <p>As a Computer Service, I diagnose, repaire and maintain computer systems and hardware. I perform tasks such as installing software, Upgrading components and troubleshooting issues</p>
+                   
+                        <a href="#">Learn more</a>
+                        
+                </div>
+
+                <!-- <div> -->
+                    <!-- space for icons -->
+                    <!-- <i class="fa-solid fa-computer"></i> -->
+                     
+                    <!-- <h2>Systems Administrator</h2> -->
+                    <!-- description -->
+                    <!-- <p>SO YOURS HAS TO BE PRESENT; -->
+
+                        <!-- IF YOU DONT HAVE ANDROID STUDIO U CAN SKIP TO VS CODE SECTION, OR REFER TO MY PREVIOUS VIDEO LINK IN DESCRIPTION TO INSTALL IT.</p> -->
+                        <!-- <a href="#">Learn more</a> -->
+                        
+                <!-- </div> -->
+
+
+            </div>
+        </div>
+     </div>
+
+     <!-- Portfolio -->
+      <div id="portfolio">
+        <div class="container">
+            <h1 class="sub-title">Portfolio</h1>
+            <div class="work-list">
+                <div class="work">
+                    <img src="images/easyG.png" alt="">
+                    <div class="layer">
+                        <h3>Easy Garage</h3>
+                        <p>A smart walking stick is an assistive device designed to aid individuals with visual impairments or mobility challengs.It is equipped with features like obstacle detection,alerts enhancing safety and independence for users</p>
+                    
+                        
+                            <!-- <a href="#"><i class="fas fas-external-link-alt"></i></a> -->
+                    </div>
+                </div>
+                <!-- second image div -->
+                <div class="work">
+                    <img src="images/app.png" alt="">
+                    <div class="layer">
+                        <h3>Shoppers E-Commerce App</h3>
+                        <p>A Shoppers Application for e-commerce is a digital plaform that enables users to browse,search and purchase products online.It provides features like product categorization, secure payment,order tracking, customer support, ensuring a seamless shopping experience for users</p>
+                            <!-- <a href="#"><i class="fas fas-external-link-alt"></i></a> -->
+                    </div>
+                </div>
+                <!-- third image div -->
+                <div class="work">
+                    <img src="images/iphon2.png" alt="">
+                    <div class="layer">
+                        <h3>eNotice Board</h3>
+                        <p>An electronic notice Board is a digital display system used to convey information,announcements in real-time</p>
+                            <!-- <a href="#"><i class="fas fas-external-link-alt"></i></a> -->
+                    </div>
+                </div>
+            </div>
+            <a href="" class="btn">See more</a>
+
+        </div>
+
+      </div>
+
+      <!-- contact page -->
+       <div id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="contact-left">
+                    <h1 class="sub-title">Contact Me</h1>
+                    <p><i class="fas fa-paper-plane"></i>kasumbaedwine28@gmail.com</p>
+                    <p><i class="fa-solid fa-phone"></i>(+256) 740881082 | (+256) 760762675</p>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/kasumba.edwinksb"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.linkedin.com/in/kasumba-edwine/?trk=opento_sprofile_goalscard"><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="#"><i class="fa-brands fa-instagram"></i></i></a>
+                        <a href="#"><i class="fa-brands fa-whatsapp"></i></i></a>
+
+                    </div>
+                    <!-- Cv to be put -->
+                    <!-- <a href="images/Edwine's cv.pdf" download class="btn btn2">Download CV</a> -->
+                    <!-- <a href=""class="btn btn2">Download CV</a> -->
+                    <a href="images/Edwine's cv.pdf" download class="btn btn2">Download CV</a>
+
+
+                </div>
+                <div class="contact-right">
+                    <form class="submit-to-google-sheet">
+                        <input type="text" name="Name" placeholder="Your name" required>
+                        <input type="email" name="Email" placeholder="Your email" required>
+                        <textarea name="Message" rows="6" placeholder="Your message"></textarea>
+                        <button type="submit" class="btn btn2">Submit</button>
+
+                    </form>
+                    <span id="msg"></span>
+                </div>
+
+            </div>
+        </div>
+        <div class="copyright">
+            <p>copyright &copy Kasumba Edwine  2024 </p>
+        </div>
+       </div>
+
+
+    <script>
+        var tablinks = document.getElementsByClassName('tab-links');
+        var tabcontents = document.getElementsByClassName('tab-contents');
+
+        function opentab(tabname){
+            for(tablink of tablinks){
+                tablink.classList.remove("active-link");
+            }
+
+            for(tabcontent of tabcontents){
+                tabcontent.classList.remove("active-tab");
+            }
+            event.currentTarget.classList.add("active-link");
+            document.getElementById(tabname).classList.add("active-tab");
+        }
+
+
+    </script>
+
+    <script>
+        var sidemenu = document.getElementById("sidemenu");
+
+        function openmenu(){
+            sidemenu.style.right = "0";
+        }
+
+        function closemenu(){
+            sidemenu.style.right = "-200px";
+        }
+  
+    </script>
+
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbzP0095t45qyvgir3iGVDlWxadLGN95Li3LKxJbd79n56ug9R3aLkAyy_2srjeUGxvI/exec';
+        const form = document.querySelector('.submit-to-google-sheet'); // selecting the form
+        const msg = document.getElementById("msg");
+
+        form.addEventListener('submit', e => {
+        e.preventDefault();
+        fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+            .then(response => {
+                msg.innerHTML = "Message sent successfully";
+                setTimeout(() => { msg.innerHTML = ""; }, 5000);
+                form.reset();
+    })
+    .catch(error => console.error('Error!', error.message));
+});
+
+    </script>
+
+ 
+</body>
+
+</html>
