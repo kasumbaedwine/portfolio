@@ -22,13 +22,6 @@ body{
     background-size: 30% auto;
     
 }
-    #header {
-        position: sticky;
-        top: 0;
-        z-index: 1000;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        padding: 10px 0;
-    }
 
 .container{
     padding: 10px 10%;
@@ -435,4 +428,3 @@ nav .fas{
     transition: transform 0.5s;
 
 }
-
