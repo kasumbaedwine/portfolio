@@ -3,318 +3,1207 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personal Portfolio</title>
-    <link rel="stylesheet" href="style.css">
-    <!-- link for font awesome to be inserted here -->
-    <script src="https://kit.fontawesome.com/d7a73e8193.js" crossorigin="anonymous"></script>
-    <!--Start of Tawk.to Script-->
-<script type="text/javascript">
-var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-(function(){
-var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-s1.async=true;
-s1.src='https://embed.tawk.to/678b7805825083258e072ea4/1ihscplva';
-s1.charset='UTF-8';
-s1.setAttribute('crossorigin','*');
-s0.parentNode.insertBefore(s1,s0);
-})();
+    <meta name="description" content="Kasumba Edwine - IT Specialist, Mobile App & Web Developer from Uganda. Expert in Flutter, Java, Python, MySQL & system design. Passionate about building scalable digital solutions.">
+    <meta name="keywords" content="Kasumba Edwine, IT Specialist Uganda, Flutter Developer, Mobile App Developer, Web Developer, Full Stack, Portfolio 2026">
+    <meta name="author" content="Kasumba Edwine">
+    <title>Kasumba Edwine | IT Specialist & Developer</title>
+    <link rel="icon" href="images/grad.png" type="image/png">
+
+    <!-- Font Awesome -->
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Tawk.to Chat -->
+    <!-- <script type="text/javascript">
+        var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+        (function() {
+            var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+            s1.async = true;
+            s1.src = 'https://embed.tawk.to/678b7805825083258e072ea4/1ihscplva';
+            s1.charset = 'UTF-8';
+            s1.setAttribute('crossorigin', '*');
+            s0.parentNode.insertBefore(s1, s0);
+        })();
+    </script> -->
+
+    <script type="module">
+type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+    import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyBV0i1u3z9u54bj07RSWOYiU8mgvNTh8LI",
+    authDomain: "portfolio-cfa33.firebaseapp.com",
+    projectId: "portfolio-cfa33",
+    storageBucket: "portfolio-cfa33.firebasestorage.app",
+    messagingSenderId: "665880762532",
+    appId: "1:665880762532:web:c4da7e972f462ff0faee31",
+    measurementId: "G-FL0Q3236SJ"
+  };
+// Init Firebase
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+// CONTACT FORM FUNCTION
+function handleContactForm() {
+    const form = document.getElementById('contact-form');
+    const msg = document.getElementById('form-msg');
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        msg.innerHTML = `<span class="text-amber-400">
+            <i class="fas fa-spinner fa-spin mr-2"></i>Sending...
+        </span>`;
+
+        try {
+            await addDoc(collection(db, "messages"), {
+                name: form.Name.value,
+                email: form.Email.value,
+                message: form.Message.value,
+                createdAt: new Date()
+            });
+
+            msg.innerHTML = `<span class="text-emerald-400">
+                <i class="fas fa-check-circle mr-2"></i>Message sent!
+            </span>`;
+
+            form.reset();
+
+            setTimeout(() => {
+                msg.innerHTML = '';
+            }, 5000);
+
+        } catch (error) {
+            console.error(error);
+            msg.innerHTML = `<span class="text-red-400">
+                Something went wrong.
+            </span>`;
+        }
+    });
+}
+
+// Run it
+handleContactForm();
 </script>
-<!--End of Tawk.to Script-->
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Space+Grotesk:wght@500;600&display=swap');
+
+        * {
+            box-sizing: border-box;
+            transition-property: color, background-color, border-color;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 150ms;
+        }
+
+        body {
+            overflow-x: hidden;
+        }
+
+        .tail-container * {
+            font-family: 'Inter', system-ui, sans-serif;
+        }
+
+        .heading-font {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        /* Glassmorphism */
+        .glass {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+
+        /* Hero gradient animation */
+        .hero-bg {
+            animation: gradientShift 15s ease infinite;
+            background-size: 400% 400%;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Skill bar */
+        .skill-bar {
+            transition: width 1.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        /* Project card hover */
+        .project-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 25px 50px -12px rgb(255 45 85 / 0.25);
+        }
+
+        /* Timeline line */
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, #ff2d55, #22d3ee);
+        }
+
+        /* ── NAVBAR ── */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 50;
+        }
+
+        /* ── HERO responsive typography ── */
+        .hero-heading {
+            font-size: clamp(2.5rem, 8vw, 7rem);
+            line-height: 1;
+            letter-spacing: -2px;
+        }
+
+        .hero-sub {
+            font-size: clamp(1.1rem, 3vw, 1.75rem);
+        }
+
+        /* Profile image responsive */
+        .profile-wrapper {
+            width: clamp(240px, 55vw, 384px);
+            height: clamp(240px, 55vw, 384px);
+        }
+
+        .profile-img {
+            width: calc(clamp(240px, 55vw, 384px) - 2rem);
+            height: calc(clamp(240px, 55vw, 384px) - 2rem);
+        }
+
+        /* Trust badges – hide overflow on small screens */
+        .trust-signals {
+            flex-wrap: wrap;
+            gap: 0.5rem 1.5rem;
+        }
+
+        .trust-divider {
+            display: none;
+        }
+
+        @media (min-width: 640px) {
+            .trust-divider { display: block; }
+        }
+
+        /* ── SECTION HEADINGS ── */
+        .section-heading {
+            font-size: clamp(2rem, 6vw, 3.5rem);
+        }
+
+        /* ── CONTACT FORM ── */
+        #contact-form textarea {
+            resize: vertical;
+        }
+
+        /* ── ACTIVE FILTER ── */
+        .active-filter {
+            border-color: #ff2d55 !important;
+            color: #ff2d55 !important;
+        }
+
+        /* ── MOBILE MENU OPEN ── */
+        #mobile-menu.open {
+            display: block;
+        }
+
+        /* ── PROJECT GRID: single col on xs, 2 on md, 3 on lg ── */
+        #projects-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            #projects-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (min-width: 1024px) {
+            #projects-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        /* ── SERVICES GRID ── */
+        .services-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.25rem;
+        }
+
+        @media (min-width: 640px) {
+            .services-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (min-width: 1024px) {
+            .services-grid { grid-template-columns: repeat(4, 1fr); }
+        }
+
+        /* ── JOURNEY GRID ── */
+        .journey-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+        }
+
+        @media (min-width: 768px) {
+            .journey-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        /* ── CONTACT GRID ── */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
+        }
+
+        @media (min-width: 1024px) {
+            .contact-grid { grid-template-columns: 5fr 7fr; }
+        }
+
+        /* ── HERO GRID ── */
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        @media (min-width: 768px) {
+            .hero-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        /* ── ABOUT GRID ── */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        @media (min-width: 768px) {
+            .about-grid { grid-template-columns: 5fr 7fr; }
+        }
+
+        /* ── FILTER BUTTONS WRAP ── */
+        #project-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        /* ── FOOTER ── */
+        .footer-inner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            text-align: center;
+        }
+
+        @media (min-width: 768px) {
+            .footer-inner {
+                flex-direction: row;
+                justify-content: space-between;
+                text-align: left;
+            }
+        }
+
+        /* ── HERO CTA BUTTONS ── */
+        .cta-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        @media (min-width: 480px) {
+            .cta-group {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+        }
+
+        /* ── ABOUT STATS ── */
+        .about-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+        }
+
+        /* ── CONTACT FORM GRID ── */
+        .form-top-row {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        @media (min-width: 640px) {
+            .form-top-row { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        /* Floating badges hidden on small screens */
+        .hero-badge-top {
+            display: none;
+        }
+
+        @media (min-width: 480px) {
+            .hero-badge-top { display: flex; }
+        }
+    </style>
 </head>
-<body>
-    <div id="header">
-        <div class="container">
-            <nav>
-                <!-- company logo -->
-                <h1><span class="logo">Kasumba&ensp;</span>Edwine</h1>
-                <!-- <img src="" class="logo" alt="KSB"> -->
 
-                <!-- list of menu -->
-                <ul id="sidemenu">
-                    <li><a href="#header">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#portfolio">Portfolio</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                    <i class="fas fa-times" onclick="closemenu()"></i>
+<body class="tail-container dark bg-slate-950 text-slate-200">
 
-                </ul>
-                <!-- menu icon to be added -->
-                 <i class="fas fa-bars" onclick="openmenu()"></i>
-            </nav>
-            <div class="header-text">
-                <p>IT Specialist | Mobile App Developer <br> Web App Developer</p>
-                <h1>Hi, I'm <span>Kasumba Edwine</span> <br> From Uganda </h1>
+    <!-- ── NAVBAR ── -->
+    <nav class="glass border-b border-white/10">
+        <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-12">
+            <div class="flex items-center justify-between h-16">
+
+                <!-- Logo -->
+                <div class="flex items-center gap-x-2 min-w-0">
+                    <div class="w-9 h-9 flex-shrink-0 bg-gradient-to-br from-[#ff2d55] to-[#22d3ee] rounded-2xl flex items-center justify-center text-white font-bold text-sm shadow-lg shadow-[#ff2d55]/30">
+                        KE
+                    </div>
+                    <h1 class="heading-font text-lg sm:text-2xl font-semibold tracking-tight truncate">
+                        Kasumba<span class="text-[#ff2d55]">.</span>Edwine
+                    </h1>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center gap-x-6 lg:gap-x-8 text-sm font-medium">
+                    <a href="#home" onclick="smoothScrollTo('home')" class="hover:text-[#ff2d55] flex items-center gap-x-1 whitespace-nowrap">
+                        <i class="bx bx-home "></i> Home
+                    </a>
+                    <a href="#about" onclick="smoothScrollTo('about')" class="hover:text-[#ff2d55] whitespace-nowrap">About</a>
+                    <a href="#services" onclick="smoothScrollTo('services')" class="hover:text-[#ff2d55] whitespace-nowrap">Services</a>
+                    <a href="#projects" onclick="smoothScrollTo('projects')" class="hover:text-[#ff2d55] whitespace-nowrap">Projects</a>
+                    <a href="#journey" onclick="smoothScrollTo('journey')" class="hover:text-[#ff2d55] whitespace-nowrap">Journey</a>
+                    <a href="#contact" onclick="smoothScrollTo('contact')" class="hover:text-[#ff2d55] whitespace-nowrap">Contact</a>
+                </div>
+
+                <!-- Right controls -->
+                <div class="flex items-center gap-x-2 sm:gap-x-4">
+                    <button onclick="toggleTheme()" id="theme-toggle"
+                            class="w-9 h-9 flex items-center justify-center rounded-2xl hover:bg-white/10 text-lg">
+                        <i id="theme-icon" class="bx bx-moon"></i>
+                    </button>
+
+                    <a href=""
+                       target="_blank"
+                       class="hidden sm:flex items-center gap-x-2 px-4 h-9 bg-[#ff2d55] hover:bg-[#ff2d55]/90 text-white text-sm font-semibold rounded-2xl whitespace-nowrap">
+                        <i class="bx bx-download"></i>
+                        <span>CV</span>
+                    </a>
+
+                    <button onclick="toggleMobileMenu()" class="md:hidden w-9 h-9 flex items-center justify-center text-xl">
+                        <i id="hamburger-icon" class="bx bx-menu"></i>
+                    </button>
+                </div>
             </div>
         </div>
-    </div>
-    <!-- end of the home div -->
 
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden px-4 py-4 bg-slate-900 border-t border-white/10">
+            <div class="flex flex-col gap-y-2 text-sm font-medium">
+                <a href="#home" onclick="closeMobileMenu();smoothScrollTo('home')" class="py-3 px-4 hover:bg-white/10 rounded-2xl">Home</a>
+                <a href="#about" onclick="closeMobileMenu();smoothScrollTo('about')" class="py-3 px-4 hover:bg-white/10 rounded-2xl">About</a>
+                <a href="#services" onclick="closeMobileMenu();smoothScrollTo('services')" class="py-3 px-4 hover:bg-white/10 rounded-2xl">Services</a>
+                <a href="#projects" onclick="closeMobileMenu();smoothScrollTo('projects')" class="py-3 px-4 hover:bg-white/10 rounded-2xl">Projects</a>
+                <a href="#journey" onclick="closeMobileMenu();smoothScrollTo('journey')" class="py-3 px-4 hover:bg-white/10 rounded-2xl">Journey</a>
+                <a href="#contact" onclick="closeMobileMenu();smoothScrollTo('contact')" class="py-3 px-4 hover:bg-white/10 rounded-2xl">Contact</a>
 
-     <!-- start of about page -->
-    <div id="about">
-        <div class="container">
-            <div class="row">
-                <div class="about-col-1">
-                    <img src="images/grad.png">
+                <div class="pt-3 border-t border-white/10">
+                    <a href="https://drive.google.com/file/d/1MEk_pOvjCRmEMhUyHL1MbU2fQiLDEdRq/view?usp=sharing"
+                       target="_blank"
+                       class="flex items-center justify-center gap-x-2 w-full h-12 bg-[#ff2d55] text-white rounded-2xl font-semibold">
+                        <i class="fas fa-download"></i>
+                        Download CV
+                    </a>
                 </div>
-                <div class="about-col-2">
-                    <h1 class="sub-title">About Me</h1>
-                    <p class="justify">
+            </div>
+        </div>
+    </nav>
 
-               Graduated with a  Honors Bachelors Degree in Information Technology at Mbarara University of Science 
-and Technology on 19th October 2024. Adept at programming, innovation and presentation, and 
-Networking, with a strong foundation in java, python, flutter.
+    <!-- ── HERO ── -->
+    <section id="home" class="min-h-screen flex items-center pt-16 hero-bg"
+             style="background: linear-gradient(92deg, #0f172a 0%, #1e2937 100%);">
+        <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-12 py-16 w-full">
+            <div class="hero-grid">
+
+                <!-- Left text -->
+                <div class="space-y-6 fade-in" id="hero-text">
+                    <div class="inline-flex items-center gap-x-2 bg-white/10 text-white text-sm font-medium px-4 h-8 rounded-3xl backdrop-blur-md">
+                        <div class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
+                        Available for opportunities
+                    </div>
+
+                    <h1 class="heading-font hero-heading font-semibold">
+                        Hi, I'm <span class="text-[#ff2d55]">Kasumba</span><br>Edwine
+                    </h1>
+
+                    <p class="hero-sub text-slate-400">
+                        IT Specialist &amp; Data Entrant
+                    </p>
+
+                    <p class="max-w-lg text-base sm:text-lg text-slate-400">
+                        Honors BSc. Information Technology &bull; Passionate about building elegant mobile &amp; web experiences with Flutter, MySQL, Excel, Python &amp; modern system design.
+                    </p>
+
+                    <!-- CTA Buttons -->
+                    <div class="cta-group">
+                        <a href="#contact" onclick="smoothScrollTo('contact')"
+                           class="px-6 sm:px-8 h-12 sm:h-14 bg-[#ff2d55] hover:bg-[#ff2d55]/90 text-white font-semibold rounded-3xl flex items-center justify-center text-base sm:text-lg shadow-xl shadow-[#ff2d55]/40 whitespace-nowrap">
+                            Hire Me
+                        </a>
+
+                        <a href="#projects" onclick="smoothScrollTo('projects')"
+                           class="px-6 sm:px-8 h-12 sm:h-14 border-2 border-white/60 hover:border-white text-white font-semibold rounded-3xl flex items-center justify-center text-base sm:text-lg whitespace-nowrap">
+                            View Projects
+                        </a>
+
+                        <a href="https://drive.google.com/file/d/1MEk_pOvjCRmEMhUyHL1MbU2fQiLDEdRq/view?usp=sharing"
+                           target="_blank"
+                           class="px-6 sm:px-8 h-12 sm:h-14 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-3xl flex items-center justify-center gap-x-3 text-base sm:text-lg whitespace-nowrap">
+                            <i class="fas fa-download"></i>
+                            Download CV
+                        </a>
+                    </div>
+
+                    <!-- Trust signals -->
+                    <div class="trust-signals flex items-center text-sm pt-4">
+                        <div class="flex items-center gap-x-1">
+                            <i class="bx bx-graduation text-[#22d3ee]"></i>
+                            <span class="font-medium">MUST &bull; 2024</span>
+                        </div>
+                        <div class="trust-divider h-3 w-px bg-white/30 mx-4"></div>
+                        <div>Next Minds Uganda LTD</div>
+                        <div class="trust-divider h-3 w-px bg-white/30 mx-4"></div>
+                        <div>Mother Kevin College Mabira</div>
+                    </div>
+                </div>
+
+                <!-- Right visual -->
+                <div class="flex justify-center md:justify-end fade-in" id="hero-image">
+                    <div class="relative">
+                        <div class="profile-wrapper bg-gradient-to-br from-[#ff2d55]/20 to-[#22d3ee]/20 rounded-[4rem] rotate-12 flex items-center justify-center shadow-2xl">
+                            <img src="images/grad.png"
+                                 alt="Kasumba Edwine"
+                                 class="profile-img object-cover rounded-3xl -rotate-12 shadow-2xl border-4 sm:border-8 border-white/20">
+                        </div>
+
+                        <!-- Floating badge top -->
+                        <div class="hero-badge-top absolute -top-4 sm:-top-6 -right-4 sm:-right-6 glass px-3 sm:px-5 py-2 sm:py-3 rounded-3xl items-center gap-x-2 sm:gap-x-3 shadow-xl">
+                            <i class="fas fa-mobile-screen-button text-xl sm:text-3xl text-[#22d3ee]"></i>
+                            <div>
+                                <p class="font-semibold text-xs sm:text-sm">Never Rest</p>
+                                <p class="text-xs text-slate-400">To Rust</p>
+                            </div>
+                        </div>
+
+                        <!-- Floating badge bottom -->
+                        <div class="absolute -bottom-6 sm:-bottom-8 -left-4 sm:-left-8 glass px-4 sm:px-6 py-3 sm:py-4 rounded-3xl shadow-xl flex items-center gap-x-2 sm:gap-x-3">
+                            <div class="text-2xl sm:text-4xl font-semibold text-[#ff2d55]">3+</div>
+                            <div class="text-xs sm:text-sm leading-tight">
+                                Years building<br>
+                                <span class="font-medium">digital products</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center">
+            <div class="text-xs tracking-[2px] mb-2">SCROLL FOR MORE</div>
+            <i class="bx bx-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- ── ABOUT ── -->
+    <section id="about" class="py-16 sm:py-24 bg-slate-900">
+        <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-12">
+            <div class="about-grid">
+
+                <!-- Profile intro -->
+                <div>
+                    <div class="md:sticky md:top-24">
+                        <div class="inline-flex items-center px-4 h-8 rounded-3xl bg-white/10 text-sm mb-6">
+                            <span class="text-[#ff2d55] mr-2">★</span> HONORS GRADUATE
+                        </div>
+                        <h2 class="heading-font section-heading font-semibold leading-none mb-6">About Me</h2>
+
+                        <p class="text-slate-400 text-base sm:text-lg leading-relaxed">
+                            An Honors graduate with a Bachelor's Degree in Information Technology from Mbarara University of Science and Technology with a solid foundation in software development, database management systems and system design. I am actively strengthening my expertise through practical networking labs, gaining hands-on experience in network setup, configuration, and troubleshooting. I am passionate about delivering clean, scalable, and user-focused solutions, and I am motivated to add value through innovation, teamwork, and continuous learning.
                         </p>
 
-                        <div class="tab-tittles">
-                            <p class="tab-links active-link" onclick="opentab('skills')">Skills</p>
-                            <p class="tab-links" onclick="opentab('exprience')">Exprience</p>
-                            <p class="tab-links" onclick="opentab('education')">Education</p>
+                        <div class="about-stats">
+                            <div>
+                                <div class="text-3xl sm:text-4xl font-semibold text-[#22d3ee]">2</div>
+                                <div class="text-sm text-slate-400">Years of experience</div>
+                            </div>
+                            <div>
+                                <div class="text-3xl sm:text-4xl font-semibold text-[#22d3ee]">4+</div>
+                                <div class="text-sm text-slate-400">Projects delivered</div>
+                            </div>
+                            <div>
+                                <div class="text-3xl sm:text-4xl font-semibold text-[#22d3ee]">∞</div>
+                                <div class="text-sm text-slate-400">Cups of coffee</div>
+                            </div>
                         </div>
-                        <div class="tab-contents active-tab" id="skills">
-                            <ul>
-                                <li><span>Mobile Developing</span><br>Building Andriod/iOS apps</li>
-                                <li><span>Web Development</span><br>Web app Development</li>
-                                <li><span>Database Designing</span><br>Mysql</li>
-                                <li><span>Data</span><br>Data Analyst</li>
-                                <li><span>Team Collaboration</span><br>Working with Others</li>
-                                <li><span>Communication</span><br>Presentation</li>
-                                
+                    </div>
+                </div>
 
-                                
-                            </ul>
-                        </div>
+                <!-- Skills -->
+                <div>
+                    <h3 class="text-lg sm:text-xl font-semibold mb-6 sm:mb-8 flex items-center gap-x-3">
+                        <span class="text-[#ff2d55]">TECH STACK</span>
+                        <span class="flex-1 h-px bg-gradient-to-r from-[#ff2d55] to-transparent"></span>
+                    </h3>
 
-                        <!-- Expreince -->
-                        <div class="tab-contents" id="exprience">
-                            <ul>
-                                <li><span>Data Analyst<br> 2025 - Present </span><br>Mother Kevin College Mabira</li>
-                                <li><span>Software Developer<br> 2024 - Present </span><br>Next Minds Uganda LTD</li>
-                                <li><span>Internship <br> 1 Month </span><br>Codinex Computers LTD</li>
-                                <li><span>Technical Director<br>2022 - 2024</span><br>Mbarara University Computing Student Association</li>
-                                <!-- <li><span>Web Development</span><br>Web app Development</li> -->
-                                <!-- <li><span>Mobile Developer</span><br>Designing Mobile interfaces</li> -->
-                            </ul>
-                        </div>
-                        <!-- Education -->
-                        <div class="tab-contents" id="education">
-                            <ul>
-                                <li><span>2021 - 2024</span><br>Mbarara University of Science and Technology</li>
-                                <li><span>2019 - 2020</span><br>Lugazi Progressive Secondary School</li>
-                                <li><span>2015 - 2018</span><br>St Mary's College Lugazi</li>
-                                <li><span>2007 - 2014</span><br>Kennedy Primary School - Entebbe</li>
-                            </ul>
-                        </div>
+                    <div class="space-y-6 sm:space-y-8" id="skills-container"></div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- Services page -->
-     <div id="services">
-        <div class="container">
-            <h1 class="sub-title">My Services</h1>
-            <div class="service-list">
+    <!-- ── SERVICES ── -->
+    <section id="services" class="py-16 sm:py-24">
+        <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-12">
+            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-end mb-10 sm:mb-12 gap-4">
                 <div>
-                    <!-- space for icons -->
-                     <i class="fas fa-code"></i>
-
-                    <h2>Web Design</h2>
-                    <!-- description  for web -->
-                     <p>As a web developer, I design, build and maintain websites and web applications. I collaborate with teams to deliver optimized and user-friendly websites</p>
-                    
-                        <a href="#">Learn more</a>
-                        
+                    <span class="text-[#ff2d55] uppercase text-sm font-medium tracking-widest">What I Offer</span>
+                    <h2 class="heading-font section-heading font-semibold">Services</h2>
                 </div>
-                <!-- 2nd description -->
-
-                <div>
-                    <!-- space for icons -->
-                    <i class="fa-brands fa-google-play"></i>
-                     
-                    <h2>Mobile App Development</h2>
-                    <p>As a mobile Application Developer, I design, build and maintain mobile applications</p>
-                    
-                        <a href="#">Learn more</a>
-                        
-                </div>
-
-                <!-- 3rd description -->
-
-                <div>
-                    <!-- space for icons -->
-                    <i class="fa-solid fa-network-wired"></i>
-                     
-                    <h2> Network Support</h2>
-                    <!-- description -->
-                    <p>As a Network Support Specialist, I manage, troubleshoot and maintain network systems to ensure seamless connectivity and performance</p>
-                        <a href="#">Learn more</a>
-                        
-                </div>
-
-                <div>
-                    <!-- space for icons -->
-                    <i class="fa-solid fa-computer"></i>
-                     
-                    <h2>Computer service & Maintence</h2>
-                    <!-- description -->
-                     <p>As a Computer Service, I diagnose, repaire and maintain computer systems and hardware. I perform tasks such as installing software, Upgrading components and troubleshooting issues</p>
-                   
-                        <a href="#">Learn more</a>
-                        
-                </div>
-
-                <!-- <div> -->
-                    <!-- space for icons -->
-                    <!-- <i class="fa-solid fa-computer"></i> -->
-                     
-                    <!-- <h2>Systems Administrator</h2> -->
-                    <!-- description -->
-                    <!-- <p>SO YOURS HAS TO BE PRESENT; -->
-
-                        <!-- IF YOU DONT HAVE ANDROID STUDIO U CAN SKIP TO VS CODE SECTION, OR REFER TO MY PREVIOUS VIDEO LINK IN DESCRIPTION TO INSTALL IT.</p> -->
-                        <!-- <a href="#">Learn more</a> -->
-                        
-                <!-- </div> -->
-
-
+                <p class="max-w-xs text-slate-400 text-sm sm:text-base">
+                    From concept to deployment — I deliver high-performance digital products.
+                </p>
             </div>
-        </div>
-     </div>
 
-     <!-- Portfolio -->
-      <div id="portfolio">
-        <div class="container">
-            <h1 class="sub-title">Portfolio</h1>
-            <div class="work-list">
-                <div class="work">
-                    <img src="images/easyG.png" alt="">
-                    <div class="layer">
-                        <h3>Easy Garage</h3>
-                        <p>Is a mobile application designed to streamline the process of vehicle maintenance and repair management. It connects car owners with garages, allowing users to book appointments, track service history, request emergency assistance, and receive notifications about upcoming maintenance. </p>
-                    
-                        
-                            <!-- <a href="#"><i class="fas fas-external-link-alt"></i></a> -->
+            <div class="services-grid">
+                <!-- Service 1 -->
+                <div class="glass border border-white/10 rounded-3xl p-6 sm:p-8 hover:border-[#ff2d55]/30 group">
+                    <div class="w-12 h-12 bg-[#ff2d55]/10 text-[#ff2d55] rounded-2xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                        <i class="bx bx-code-alt"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Web Development</h3>
+                    <p class="text-slate-400 text-sm">Modern, responsive websites and web apps</p>
+                    <div class="text-xs mt-6 uppercase flex items-center text-[#ff2d55]">
+                        <span>Django &bull; Tailwind &bull; HTML</span>
+                        <span class="flex-1 h-px bg-white/20 mx-3"></span>
+                        <i class="bx bx-right-arrow-alt"></i>
                     </div>
                 </div>
-                <!-- second image div -->
-                <div class="work">
-                    <img src="images/app.png" alt="">
-                    <div class="layer">
-                        <h3>Shoppers E-Commerce App</h3>
-                        <p>A Shoppers Application for e-commerce is a digital plaform that enables users to browse,search and purchase products online.It provides features like product categorization, secure payment,order tracking, customer support, ensuring a seamless shopping experience for users</p>
-                            <!-- <a href="#"><i class="fas fas-external-link-alt"></i></a> -->
+
+                <!-- Service 2 -->
+                <div class="glass border border-white/10 rounded-3xl p-6 sm:p-8 hover:border-[#22d3ee]/30 group">
+                    <div class="w-12 h-12 bg-[#22d3ee]/10 text-[#22d3ee] rounded-2xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                        <i class="bx bx-mobile-alt"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Mobile App Development</h3>
+                    <p class="text-slate-400 text-sm">Cross-platform iOS &amp; Android apps using Flutter. Beautiful UI, offline-first, and seamless performance.</p>
+                    <div class="text-xs mt-6 uppercase flex items-center text-[#22d3ee]">
+                        <span>Flutter &bull; Dart &bull; Firebase</span>
+                        <span class="flex-1 h-px bg-white/20 mx-3"></span>
+                        <i class="fas fa-arrow-right"></i>
                     </div>
                 </div>
-                <!-- third image div -->
-                <div class="work">
-                    <img src="images/iphon2.png" alt="">
-                    <div class="layer">
-                        <h3>eNotice Board</h3>
-                        <p>An electronic notice Board is a digital display system used to convey information,announcements in real-time</p>
-                            <!-- <a href="#"><i class="fas fas-external-link-alt"></i></a> -->
+
+                <!-- Service 3 -->
+                <div class="glass border border-white/10 rounded-3xl p-6 sm:p-8 hover:border-[#ff2d55]/30 group">
+                    <div class="w-12 h-12 bg-[#ff2d55]/10 text-[#ff2d55] rounded-2xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                        <i class="bx bx-network-chart"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Network Support &amp; Systems</h3>
+                    <p class="text-slate-400 text-sm">Design, troubleshoot, and maintain secure enterprise networks and IT infrastructure.</p>
+                    <div class="text-xs mt-6 uppercase flex items-center text-[#ff2d55]">
+                        <span>Cisco Labs &bull; Linux</span>
+                        <span class="flex-1 h-px bg-white/20 mx-3"></span>
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="glass border border-white/10 rounded-3xl p-6 sm:p-8 hover:border-[#22d3ee]/30 group">
+                    <div class="w-12 h-12 bg-[#22d3ee]/10 text-[#22d3ee] rounded-2xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                        <i class="bx bx-bar-chart-alt-2"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Data Visualization &amp; Analysis</h3>
+                    <p class="text-slate-400 text-sm">System optimization, data analysis, Microsoft Excel and database architecture with MySQL.</p>
+                    <div class="text-xs mt-6 uppercase flex items-center text-[#22d3ee]">
+                        <span>MySQL &bull; Python &bull; Excel</span>
+                        <span class="flex-1 h-px bg-white/20 mx-3"></span>
+                        <i class="fas fa-arrow-right"></i>
                     </div>
                 </div>
             </div>
-            <a href="" class="btn">See more</a>
-
         </div>
+    </section>
 
-      </div>
-
-      <!-- contact page -->
-       <div id="contact">
-        <div class="container">
-            <div class="row">
-                <div class="contact-left">
-                    <h1 class="sub-title">Contact Me</h1>
-                    <p><i class="fas fa-paper-plane"></i>kasumbaedwine28@gmail.com</p>
-                    <p><i class="fa-solid fa-phone"></i>(+256) 740881082 | (+256) 760762675</p>
-                    <div class="social-icons">
-                        <a href="https://www.facebook.com/kasumba.edwinksb"><i class="fab fa-facebook"></i></a>
-                        <a href="https://www.linkedin.com/in/kasumba-edwine/?trk=opento_sprofile_goalscard"><i class="fa-brands fa-linkedin"></i></a>
-<!--                         <a href="#"><i class="fa-brands fa-instagram"></i></i></a> -->
-<!--                         <a href="#"><i class="fa-brands fa-whatsapp"></i></i></a> -->
-
-                    </div>
-                    <!-- Cv to be put -->
-                    <!-- <a href="images/Edwine's cv.pdf" download class="btn btn2">Download CV</a> -->
-                    <!-- <a href=""class="btn btn2">Download CV</a> -->
-                    <a href="https://drive.google.com/file/d/1MEk_pOvjCRmEMhUyHL1MbU2fQiLDEdRq/view?usp=sharing" download class="btn btn2">Download CV</a>
-
-
+    <!-- ── PROJECTS ── -->
+    <section id="projects" class="py-16 sm:py-24 bg-slate-900">
+        <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-12">
+            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-end mb-10 sm:mb-12 gap-4">
+                <div>
+                    <span class="text-[#ff2d55] uppercase text-sm font-medium tracking-widest">Featured Work</span>
+                    <h2 class="heading-font section-heading font-semibold">Projects</h2>
                 </div>
-                <div class="contact-right">
-                    <form class="submit-to-google-sheet">
-                        <input type="text" name="Name" placeholder="Your name" required>
-                        <input type="email" name="Email" placeholder="Your email" required>
-                        <textarea name="Message" rows="6" placeholder="Your message"></textarea>
-                        <button type="submit" class="btn btn2">Submit</button>
 
+                <!-- Filter -->
+                <div id="project-filters">
+                    <button onclick="filterProjects('all')"
+                            class="active-filter px-5 h-9 rounded-3xl border border-white/30 hover:border-white/70 font-medium text-sm">All</button>
+                    <button onclick="filterProjects('mobile')"
+                            class="px-5 h-9 rounded-3xl border border-white/30 hover:border-white/70 font-medium text-sm">Mobile</button>
+                    <button onclick="filterProjects('web')"
+                            class="px-5 h-9 rounded-3xl border border-white/30 hover:border-white/70 font-medium text-sm">Web</button>
+                    <button onclick="filterProjects('data')"
+                            class="px-5 h-9 rounded-3xl border border-white/30 hover:border-white/70 font-medium text-sm">Data</button>
+                </div>
+            </div>
+
+            <div id="projects-grid"></div>
+
+            <div class="text-center mt-10 sm:mt-12">
+                <a href="https://github.com/" target="_blank"
+                   class="inline-flex items-center gap-x-2 text-[#ff2d55] hover:text-white border border-[#ff2d55] hover:bg-[#ff2d55] px-6 sm:px-8 h-12 rounded-3xl text-sm font-semibold transition-colors">
+                    SEE ENTIRE PORTFOLIO ON GITHUB
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── JOURNEY ── -->
+    <section id="journey" class="py-16 sm:py-24">
+        <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-12">
+            <div class="text-center mb-12 sm:mb-16">
+                <span class="text-[#ff2d55] uppercase text-sm font-medium tracking-widest">Timeline</span>
+                <h2 class="heading-font section-heading font-semibold">My Journey</h2>
+            </div>
+
+            <div class="journey-grid">
+                <!-- Experience -->
+                <div>
+                    <h3 class="text-xl sm:text-2xl font-semibold mb-6 sm:mb-8 flex items-center">
+                        <i class="bx bx-briefcase mr-3 text-[#ff2d55]"></i>Experience
+                    </h3>
+                    <div class="timeline relative pl-8 space-y-8 sm:space-y-12">
+                        <div class="relative">
+                            <div class="absolute left-[-9px] top-1 w-5 h-5 rounded-full bg-[#ff2d55] flex items-center justify-center">
+                                <div class="w-2 h-2 bg-white rounded-full"></div>
+                            </div>
+                            <div class="glass rounded-3xl p-5 sm:p-6">
+                                <div class="flex flex-col sm:flex-row sm:justify-between gap-1">
+                                    <div>
+                                        <p class="font-semibold">Software Developer</p>
+                                        <p class="text-[#22d3ee] text-sm">Next Minds Uganda LTD</p>
+                                    </div>
+                                    <div class="text-sm text-slate-400">1 year</div>
+                                </div>
+                                <p class="text-slate-400 mt-3 text-sm">Building scalable mobile and web applications for clients across East Africa.</p>
+                            </div>
+                        </div>
+
+                        <div class="relative">
+                            <div class="absolute left-[-9px] top-1 w-5 h-5 rounded-full bg-[#22d3ee] flex items-center justify-center">
+                                <div class="w-2 h-2 bg-white rounded-full"></div>
+                            </div>
+                            <div class="glass rounded-3xl p-5 sm:p-6">
+                                <div class="flex flex-col sm:flex-row sm:justify-between gap-1">
+                                    <div>
+                                        <p class="font-semibold">Data ENTRANT</p>
+                                        <p class="text-[#22d3ee] text-sm">Mother Kevin College Mabira</p>
+                                    </div>
+                                    <div class="text-sm text-slate-400">2025 — Present</div>
+                                </div>
+                                <p class="text-slate-400 mt-3 text-sm">Data visualization, reporting systems, and business intelligence solutions.</p>
+                            </div>
+                        </div>
+
+                        <div class="relative">
+                            <div class="absolute left-[-9px] top-1 w-5 h-5 rounded-full bg-slate-600 flex items-center justify-center">
+                                <div class="w-2 h-2 bg-white rounded-full"></div>
+                            </div>
+                            <div class="glass rounded-3xl p-5 sm:p-6">
+                                <div class="flex flex-col sm:flex-row sm:justify-between gap-1">
+                                    <div>
+                                        <p class="font-semibold">Volunteer Technical Director</p>
+                                        <p class="text-[#22d3ee] text-sm">Mbarara University Computing Student Association</p>
+                                    </div>
+                                    <div class="text-sm text-slate-400 whitespace-nowrap">2022 — 2024</div>
+                                </div>
+                                <p class="text-slate-400 mt-3 text-sm">Led technical workshops, managed IT infrastructure and student innovation projects.</p>
+                            </div>
+                        </div>
+
+                        <div class="relative">
+                            <div class="absolute left-[-9px] top-1 w-5 h-5 rounded-full bg-slate-600 flex items-center justify-center">
+                                <div class="w-2 h-2 bg-white rounded-full"></div>
+                            </div>
+                            <div class="glass rounded-3xl p-5 sm:p-6">
+                                <div class="flex flex-col sm:flex-row sm:justify-between gap-1">
+                                    <div>
+                                        <p class="font-semibold">Intern Software Developer</p>
+                                        <p class="text-[#22d3ee] text-sm">Codinex Computers LTD</p>
+                                    </div>
+                                    <div class="text-sm text-slate-400">2024 (1 month)</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Education -->
+                <div>
+                    <h3 class="text-xl sm:text-2xl font-semibold mb-6 sm:mb-8 flex items-center">
+                        <i class="fas fa-graduation-cap mr-3 text-[#22d3ee]"></i>Education
+                    </h3>
+                    <div class="timeline relative pl-8 space-y-8 sm:space-y-12">
+                        <div class="relative">
+                            <div class="absolute left-[-9px] top-1 w-5 h-5 rounded-full bg-[#22d3ee] flex items-center justify-center">
+                                <div class="w-2 h-2 bg-white rounded-full"></div>
+                            </div>
+                            <div class="glass rounded-3xl p-5 sm:p-6">
+                                <div class="flex flex-col sm:flex-row sm:justify-between gap-1">
+                                    <div>
+                                        <p class="font-semibold">BSc. Information Technology (Honors)</p>
+                                        <p class="text-slate-400 text-sm">Mbarara University of Science &amp; Technology</p>
+                                    </div>
+                                    <div class="text-sm text-slate-400 whitespace-nowrap">2021 — 2024</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="relative">
+                            <div class="absolute left-[-9px] top-1 w-5 h-5 rounded-full bg-slate-600 flex items-center justify-center">
+                                <div class="w-2 h-2 bg-white rounded-full"></div>
+                            </div>
+                            <div class="glass rounded-3xl p-5 sm:p-6">
+                                <div class="flex flex-col sm:flex-row sm:justify-between gap-1">
+                                    <div>
+                                        <p class="font-semibold">Uganda Advanced Certificate of Education</p>
+                                        <p class="text-slate-400 text-sm">Lugazi Progressive Secondary School</p>
+                                    </div>
+                                    <div class="text-sm text-slate-400 whitespace-nowrap">2019 — 2020</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="relative">
+                            <div class="absolute left-[-9px] top-1 w-5 h-5 rounded-full bg-slate-600 flex items-center justify-center">
+                                <div class="w-2 h-2 bg-white rounded-full"></div>
+                            </div>
+                            <div class="glass rounded-3xl p-5 sm:p-6">
+                                <div class="flex flex-col sm:flex-row sm:justify-between gap-1">
+                                    <div>
+                                        <p class="font-semibold">Uganda Certificate of Education</p>
+                                        <p class="text-slate-400 text-sm">St Mary's College Lugazi</p>
+                                    </div>
+                                    <div class="text-sm text-slate-400 whitespace-nowrap">2015 — 2018</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="relative">
+                            <div class="absolute left-[-9px] top-1 w-5 h-5 rounded-full bg-slate-600 flex items-center justify-center">
+                                <div class="w-2 h-2 bg-white rounded-full"></div>
+                            </div>
+                            <div class="glass rounded-3xl p-5 sm:p-6">
+                                <div class="flex flex-col sm:flex-row sm:justify-between gap-1">
+                                    <div>
+                                        <p class="font-semibold">Primary Leaving Examination</p>
+                                        <p class="text-slate-400 text-sm">Kennedy Primary School Namulanda</p>
+                                    </div>
+                                    <div class="text-sm text-slate-400 whitespace-nowrap">2006 — 2014</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── CONTACT ── -->
+    <section id="contact" class="py-16 sm:py-24 bg-slate-900">
+        <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-12">
+            <div class="contact-grid">
+                <!-- Left info -->
+                <div>
+                    <h2 class="heading-font text-3xl sm:text-4xl lg:text-5xl font-semibold mb-4 sm:mb-6 leading-tight">
+                        Let's build something<br>extraordinary together
+                    </h2>
+                    <p class="text-slate-400 text-base sm:text-lg mb-8 sm:mb-10">
+                        Whether you need a mobile app, web platform, or IT infrastructure — I'm ready to collaborate.
+                    </p>
+
+                    <div class="space-y-6 sm:space-y-8">
+                        <div class="flex items-start gap-x-4">
+                            <i class="bx bx-send text-2xl sm:text-3xl text-[#ff2d55] mt-1 flex-shrink-0"></i>
+                            <div class="min-w-0">
+                                <p class="font-medium">Email</p>
+                                <a href="mailto:kasumbaedwine28@gmail.com" class="text-slate-300 hover:text-white text-sm sm:text-base break-all">kasumbaedwine28@gmail.com</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-x-4">
+                            <i class="bx bx-phone text-2xl sm:text-3xl text-[#22d3ee] mt-1 flex-shrink-0"></i>
+                            <div>
+                                <p class="font-medium">Phone</p>
+                                <a href="tel:+256740881082" class="text-slate-300 hover:text-white text-sm sm:text-base">+256 740 881 082</a>
+                                <span class="mx-1">/</span>
+                                <a href="tel:+256760762675" class="text-slate-300 hover:text-white text-sm sm:text-base">+256 760 762 675</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-x-4">
+                            <i class="bx bxl-linkedin text-2xl sm:text-3xl text-[#22d3ee] mt-1 flex-shrink-0"></i>
+                            <div>
+                                <p class="font-medium">LinkedIn</p>
+                                <a href="https://www.linkedin.com/in/kasumba-edwine-17a220366/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BC3aX6%2B0WSkS350XTKjrsqg%3D%3D" target="_blank" class="text-slate-300 hover:text-white text-sm sm:text-base">Kasumba Edwine</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-x-4">
+                            <i class="fab fa-facebook text-2xl sm:text-3xl text-[#ff2d55] mt-1 flex-shrink-0"></i>
+                            <div>
+                                <p class="font-medium">Facebook</p>
+                                <a href="https://www.facebook.com/kasumba.edwinksb" target="_blank" class="text-slate-300 hover:text-white text-sm sm:text-base">Kasumba Edwinksb</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form -->
+                <div>
+                    <form id="contact-form" class="glass rounded-3xl p-6 sm:p-8 md:p-10">
+                        <div class="form-top-row">
+                            <input type="text" name="Name" placeholder="Your name" required
+                                   class="bg-white/10 border border-white/10 focus:border-[#ff2d55] rounded-3xl px-5 h-14 outline-none text-white placeholder:text-slate-400 w-full">
+                            <input type="email" name="Email" placeholder="Your email" required
+                                   class="bg-white/10 border border-white/10 focus:border-[#ff2d55] rounded-3xl px-5 h-14 outline-none text-white placeholder:text-slate-400 w-full">
+                        </div>
+                        <textarea name="Message" rows="6" placeholder="Tell me about your project..." required
+                                  class="mt-4 bg-white/10 border border-white/10 focus:border-[#ff2d55] rounded-3xl px-5 py-4 w-full outline-none text-white placeholder:text-slate-400"></textarea>
+
+                        <button type="submit"
+                                class="mt-6 w-full sm:w-auto px-8 sm:px-10 h-14 bg-[#ff2d55] hover:bg-[#ff2d55]/90 text-white font-semibold rounded-3xl flex items-center justify-center gap-x-3 text-base sm:text-lg">
+                            SEND MESSAGE
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+
+                        <span id="form-msg" class="block mt-4 text-emerald-400 font-medium text-center sm:text-left"></span>
                     </form>
-                    <span id="msg"></span>
                 </div>
-
             </div>
         </div>
-        <div class="copyright">
-            <p>copyright &copy Kasumba Edwine  2025</p>
+    </section>
+
+    <!-- ── FOOTER ── -->
+    <footer class="bg-black py-10 sm:py-12 border-t border-white/10">
+        <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-12 text-sm">
+            <div class="footer-inner">
+                <p class="text-slate-400">© 2026 Kasumba Edwine. All rights reserved.</p>
+
+                <div class="flex flex-wrap justify-center gap-x-6 gap-y-2">
+                    <a href="#home" onclick="smoothScrollTo('home')" class="hover:text-white">Home</a>
+                    <a href="#about" onclick="smoothScrollTo('about')" class="hover:text-white">About</a>
+                    <a href="#projects" onclick="smoothScrollTo('projects')" class="hover:text-white">Projects</a>
+                    <a href="https://drive.google.com/file/d/1MEk_pOvjCRmEMhUyHL1MbU2fQiLDEdRq/view?usp=sharing" target="_blank" class="hover:text-white">CV</a>
+                </div>
+
+                <div class="flex items-center gap-x-4 text-slate-400">
+                    <span class="text-xs">For God and my Country</span>
+                    <div class="flex items-center gap-x-1 text-xs">
+                        <span class="relative flex h-3 w-3">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-400"></span>
+                        </span>
+                        OPEN TO WORK
+                    </div>
+                </div>
+            </div>
         </div>
-       </div>
-
+    </footer>
 
     <script>
-        var tablinks = document.getElementsByClassName('tab-links');
-        var tabcontents = document.getElementsByClassName('tab-contents');
+        // ── THEME ──
+        function toggleTheme() {
+            const html = document.documentElement
+            const isDark = html.classList.contains('dark')
+            if (isDark) {
+                html.classList.remove('dark')
+                localStorage.setItem('theme', 'light')
+                document.getElementById('theme-icon').classList.replace('fa-moon', 'fa-sun')
+            } else {
+                html.classList.add('dark')
+                localStorage.setItem('theme', 'dark')
+                document.getElementById('theme-icon').classList.replace('fa-sun', 'fa-moon')
+            }
+        }
 
-        function opentab(tabname){
-            for(tablink of tablinks){
-                tablink.classList.remove("active-link");
+        function loadTheme() {
+            const saved = localStorage.getItem('theme')
+            const icon = document.getElementById('theme-icon')
+            if (saved === 'light') {
+                document.documentElement.classList.remove('dark')
+                icon.classList.replace('fa-moon', 'fa-sun')
+            } else {
+                document.documentElement.classList.add('dark')
+            }
+        }
+
+        // ── MOBILE MENU ──
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu')
+            const icon = document.getElementById('hamburger-icon')
+            const isHidden = menu.classList.contains('hidden')
+            menu.classList.toggle('hidden', !isHidden)
+            icon.classList.toggle('fa-bars', !isHidden)
+            icon.classList.toggle('fa-times', isHidden)
+        }
+
+        function closeMobileMenu() {
+            const menu = document.getElementById('mobile-menu')
+            const icon = document.getElementById('hamburger-icon')
+            menu.classList.add('hidden')
+            icon.classList.add('fa-bars')
+            icon.classList.remove('fa-times')
+        }
+
+        // ── SMOOTH SCROLL ──
+        function smoothScrollTo(section) {
+            const el = document.getElementById(section)
+            if (el) el.scrollIntoView({ behavior: 'smooth' })
+        }
+
+        // ── SKILLS ──
+const skillsData = [
+    { name: "Flutter / Dart", level: 92, icon: "bx bx-mobile-alt" },
+    { name: "Web Development", level: 85, icon: "bx bx-code-alt" },
+    { name: "Python & Java", level: 88, icon: "bx bxl-python" },
+    { name: "MySQL / Database Design", level: 90, icon: "bx bx-data" },
+    { name: "Data Analysis & Visualization", level: 78, icon: "bx bx-bar-chart-alt-2" },
+    { name: "Networking & IT Infrastructure", level: 82, icon: "bx bx-network-chart" }
+]
+
+        function renderSkills() {
+            const container = document.getElementById('skills-container')
+            skillsData.forEach(skill => {
+                const div = document.createElement('div')
+                div.innerHTML = `
+                <div class="flex justify-between text-sm mb-3">
+                    <div class="flex items-center gap-x-3">
+                        <i class="${skill.icon}"></i>
+                        <span class="font-medium">${skill.name}</span>
+                    </div>
+                    <span class="font-mono">${skill.level}%</span>
+                </div>
+                <div class="h-2.5 bg-white/10 rounded-3xl overflow-hidden">
+                    <div class="skill-bar h-2.5 bg-gradient-to-r from-[#ff2d55] to-[#22d3ee]" style="width: 0%"></div>
+                </div>`
+                container.appendChild(div)
+            })
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const bars = entry.target.querySelectorAll('.skill-bar')
+                        bars.forEach((bar, i) => {
+                            setTimeout(() => { bar.style.width = `${skillsData[i].level}%` }, i * 120)
+                        })
+                        observer.unobserve(entry.target)
+                    }
+                })
+            }, { threshold: 0.3 })
+
+            observer.observe(container)
+        }
+
+        // ── PROJECTS ──
+        const projectsData = [
+            {
+                id: 1,
+                title: "Easy Garage",
+                category: "mobile",
+                description: "Mobile app connecting vehicle owners with garages. Book appointments, track service history, emergency assistance & real-time notifications.",
+                tech: ["Flutter", "Firebase", "Dart"],
+                image: "images/easyG.png",
+                live: "#",
+                github: "#"
+            },
+            {
+                id: 2,
+                title: "Shoppers E-Commerce",
+                category: "mobile",
+                description: "Full-featured cross-platform e-commerce app with product catalog, secure payments, order tracking and real-time customer support.",
+                tech: ["Flutter", "Stripe", "Node.js"],
+                image: "images/app.png",
+                live: "#",
+                github: "#"
+            },
+            {
+                id: 3,
+                title: "eNotice Board",
+                category: "web",
+                description: "Real-time digital notice board for institutions. Instant announcements, multimedia support, and admin dashboard.",
+                tech: ["React", "Firebase", "Tailwind"],
+                image: "images/iphon2.png",
+                live: "#",
+                github: "#"
+            },
+            {
+                id: 4,
+                title: "Results Analysis Algorithm",
+                category: "data",
+                description: "Automated Python algorithm for Mother Kevin College Mabira that collects, cleans, analyzes UNEB examination results and generates detailed performance reports, comparisons, and insights.",
+                tech: ["Python", "Pandas", "Matplotlib", "Data Visualization"],
+                image: "images/uneb-analysis.jpg",
+                live: "#",
+                github: "#"
+            }
+        ]
+
+        function renderProjects(filtered = 'all') {
+            const grid = document.getElementById('projects-grid')
+            grid.innerHTML = ''
+
+            const list = filtered === 'all' ? projectsData : projectsData.filter(p => p.category === filtered)
+
+            if (list.length === 0) {
+                grid.innerHTML = `<p class="col-span-full text-center py-12 text-slate-400">No projects in this category yet.</p>`
+                return
             }
 
-            for(tabcontent of tabcontents){
-                tabcontent.classList.remove("active-tab");
-            }
-            event.currentTarget.classList.add("active-link");
-            document.getElementById(tabname).classList.add("active-tab");
+            list.forEach(project => {
+                grid.innerHTML += `
+                <div class="project-card glass border border-white/10 rounded-3xl overflow-hidden group">
+                    <div class="relative overflow-hidden">
+                        <img src="${project.image}" alt="${project.title}"
+                             class="w-full aspect-video object-cover group-hover:scale-105 transition-transform duration-500"
+                             onerror="this.style.background='linear-gradient(135deg,#1e2937,#0f172a)';this.src=''">
+                        <div class="absolute top-3 right-3 px-3 py-1 text-xs font-medium bg-black/70 text-white rounded-3xl">
+                            ${project.category.toUpperCase()}
+                        </div>
+                    </div>
+                    <div class="p-5 sm:p-6">
+                        <h4 class="font-semibold text-lg sm:text-xl mb-2">${project.title}</h4>
+                        <p class="text-slate-400 text-sm line-clamp-3 mb-5">${project.description}</p>
+
+                        <div class="flex flex-wrap gap-2 mb-5">
+                            ${project.tech.map(t => `<span class="text-[10px] font-medium px-3 py-1 bg-white/10 rounded-3xl">${t}</span>`).join('')}
+                        </div>
+
+                        <div class="flex gap-x-3">
+                            <a href="${project.live}" target="_blank"
+                               class="flex-1 flex items-center justify-center gap-x-2 text-sm font-semibold border border-white/30 hover:border-[#22d3ee] rounded-2xl h-10 sm:h-11">
+                                <i class="fas fa-external-link-alt text-xs"></i>
+                                Live Demo
+                            </a>
+                            <a href="${project.github}" target="_blank"
+                               class="flex-1 flex items-center justify-center gap-x-2 text-sm font-semibold border border-white/30 hover:border-[#ff2d55] rounded-2xl h-10 sm:h-11">
+                                <i class="bx bxl-github text-xs"></i>
+                                GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>`
+            })
         }
 
-
-    </script>
-
-    <script>
-        var sidemenu = document.getElementById("sidemenu");
-
-        function openmenu(){
-            sidemenu.style.right = "0";
+        function filterProjects(category) {
+            document.querySelectorAll('#project-filters button').forEach(btn => {
+                btn.classList.remove('active-filter')
+            })
+            const activeBtn = Array.from(document.querySelectorAll('#project-filters button'))
+                .find(btn => btn.getAttribute('onclick').includes(`'${category}'`))
+            if (activeBtn) activeBtn.classList.add('active-filter')
+            renderProjects(category)
         }
 
-        function closemenu(){
-            sidemenu.style.right = "-200px";
+        // ── CONTACT FORM ──
+function handleContactForm() {
+    const form = document.getElementById('contact-form')
+    const msg = document.getElementById('form-msg')
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault()
+
+        msg.innerHTML = `<span class="text-amber-400">
+            <i class="fas fa-spinner fa-spin mr-2"></i>Sending...
+        </span>`
+
+        try {
+            // Save to Firebase (Firestore)
+            await addDoc(collection(db, "messages"), {
+                name: form.Name.value,
+                email: form.Email.value,
+                message: form.Message.value,
+                createdAt: new Date()
+            })
+
+            msg.innerHTML = `<span class="text-emerald-400">
+                <i class="fas fa-check-circle mr-2"></i>Message sent! I'll reply soon.
+            </span>`
+
+            form.reset()
+
+            setTimeout(() => {
+                msg.innerHTML = ''
+            }, 5000)
+
+        } catch (error) {
+            console.error("Error:", error)
+            msg.innerHTML = `<span class="text-red-400">
+                Something went wrong. Please try again.
+            </span>`
         }
-  
-    </script>
-
-    <script>
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbzP0095t45qyvgir3iGVDlWxadLGN95Li3LKxJbd79n56ug9R3aLkAyy_2srjeUGxvI/exec';
-        const form = document.querySelector('.submit-to-google-sheet'); // selecting the form
-        const msg = document.getElementById("msg");
-
-        form.addEventListener('submit', e => {
-        e.preventDefault();
-        fetch(scriptURL, { method: 'POST', body: new FormData(form) })
-            .then(response => {
-                msg.innerHTML = "Message sent successfully";
-                setTimeout(() => { msg.innerHTML = ""; }, 5000);
-                form.reset();
     })
-    .catch(error => console.error('Error!', error.message));
-});
+}
 
+        // ── INIT ──
+        function init() {
+            loadTheme()
+            renderSkills()
+            renderProjects('all')
+            handleContactForm()
+
+            const fadeElements = document.querySelectorAll('.fade-in')
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) entry.target.classList.add('visible')
+                })
+            }, { threshold: 0.1 })
+            fadeElements.forEach(el => observer.observe(el))
+        }
+
+        window.onload = init
     </script>
-
- 
 </body>
-
 </html>
